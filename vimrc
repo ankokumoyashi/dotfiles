@@ -1,9 +1,9 @@
 " Configuration file for vim
 set modelines=-4		" CVE-2007-2438
+
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
-filetype off
 set backspace=2		" more powerful backspacing
 
 let g:vimfiler_safe_mode_by_default=0
@@ -20,28 +20,19 @@ nnoremap ]Q :<C-u>clast<CR>  " 最後へ
 " swapファイル~ファイルを作らない
 :set noswapfile
 :set nobackup
-" thema change to molokai
-syntax on
 colorscheme molokai
+syntax on
+
 if has('vim_starting')
-	  if &compatible     
-		  set nocompatible               " Be iMproved  
-	  endif
 	"初回起動時のみruntimepathにneobundleのパスを指定する
-	set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
+	set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 " NeoBundleを初期化
 call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-"NeoBundle 'Shougo/vimproc', {
-"	\ 'build' : {
-"		\'windows' : 'make -f make_mingw32.mak',
-"		\'mac' : 'make -f make_mac.mak',
-"		\},
-"	\}	
+
 " インストールするプラグインをここに記述
-NeoBundle 'https://github.com/Shougo/unite.vim.git'
+NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/neocomplete.vim'
