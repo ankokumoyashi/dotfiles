@@ -21,6 +21,7 @@ nnoremap ]Q :<C-u>clast<CR>  " 最後へ
 :set noswapfile
 :set nobackup
 " thema change to molokai
+colorscheme molokai
 syntax on
 colorscheme molokai
 if has('vim_starting')
@@ -47,7 +48,9 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'ujihisa/neco-look'
 NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'pocke/neco-gh-issues'
 call neobundle#end()
 
 " Disable AutoComplPop.
