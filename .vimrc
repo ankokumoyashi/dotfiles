@@ -1,10 +1,18 @@
 " Configuration file for vim
+set ambiwidth=double
 set modelines=-4		" CVE-2007-2438
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 filetype off
 set backspace=2		" more powerful backspacing
+set expandtab "タブを空白に置き換える
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set smartindent
+
 
 let g:vimfiler_safe_mode_by_default=0
 " Don't write backup file if vim is being called by "crontab -e"
@@ -21,9 +29,9 @@ nnoremap ]Q :<C-u>clast<CR>  " 最後へ
 :set noswapfile
 :set nobackup
 " thema change to molokai
-colorscheme molokai
 syntax on
 colorscheme molokai
+set t_co=256
 if has('vim_starting')
 	  if &compatible     
 		  set nocompatible               " Be iMproved  
@@ -150,6 +158,8 @@ autocmd VimEnter * VimFilerExplorer
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+" 独自スニペット適用
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/'
 
 " SuperTab like snippets behavior.
 "imap <expr><TAB>
