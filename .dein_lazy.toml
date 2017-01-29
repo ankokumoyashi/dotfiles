@@ -1,0 +1,67 @@
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+on_path = '.*'
+
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_path = '.*'
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+depends = ['neosnippet-snippets']
+on_i = 1
+on_ft = ['snippet']
+
+[[plugins]]
+repo = 'Shougo/neocomplete'
+if = 'has("lua")'
+    on_i = 1
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+if = 'has("nvim")'
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+depends = 'neomru.vim'
+
+[[plugins]]
+repo = 'Shougo/vimfiler.vim'
+depends = 'unite.vim'
+on_map = {n = '<Plug>'}
+on_if = "isdirectory(bufname('%'))"
+hook_add = 'nnoremap <silent>   [Space]v   :<C-u>VimFiler -invisible<CR>'
+hook_source = '''
+call vimfiler#custom#profile('default', 'context', {
+		\ 'safe' : 0,
+		\ 'auto_expand' : 1,
+		\ 'parent' : 0,
+		\ })
+	let g:vimfiler_as_default_explorer = 1
+if IsWindows()
+	let g:vimfiler_detect_drives = [
+		\ 'C:/', 'D:/', 'E:/', 'F:/', 'G:/', 'H:/', 'I:/',
+		\ 'J:/', 'K:/', 'L:/', 'M:/', 'N:/']
+		" Use trashbox.
+		let g:unite_kind_file_use_trashbox = 1
+		else
+		" Like Textmate icons.
+		let g:vimfiler_tree_leaf_icon = ' '
+		let g:vimfiler_tree_opened_icon = '▾'
+		let g:vimfiler_tree_closed_icon = '▸'
+		let g:vimfiler_file_icon = ' '
+		let g:vimfiler_readonly_file_icon = '✗'
+		let g:vimfiler_marked_file_icon = '✓'
+		endif
+		autocmd MyAutoCmd FileType vimfiler call s:vimfiler_my_settings()
+		function! s:vimfiler_my_settings() abort "{{{
+nmap <buffer> <Tab> <Plug>(vimfiler_switch_to_other_window)
+	endfunction"}}}
+	'''
+
