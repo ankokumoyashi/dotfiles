@@ -1,6 +1,7 @@
 " Configuration file for vim
 set modelines=-4		" CVE-2007-2438
 
+
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
@@ -132,22 +133,3 @@ inoremap  <silent> jj <ESC>
 noremap <C-X><C-T> :VimFilerBufferDir -split -simple -winwidth=30 -no-quit<ENTER>
 
 autocmd VimEnter * VimFilerExplorer
-
-" snippets
-" key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-	set conceallevel=2 concealcursor=niv
-endif
