@@ -1,24 +1,22 @@
 " Configuration file for vim
-set ambiwidth=double
 set modelines=-4		" CVE-2007-2438
+set expandtab
+set tabstop=4
+set shiftwidth =4
+
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
-filetype off
 set backspace=2		" more powerful backspacing
-set expandtab "タブを空白に置き換える
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set autoindent
-set smartindent
-
 
 let g:vimfiler_safe_mode_by_default=0
 " Don't write backup file if vim is being called by "crontab -e"
 au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 " Don't write backup file if vim is being called by "chpass"
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
+
+let g:metarw_redmine_server = 'http://localhost:10080'
+let g:metarw_redmine_apikey = 'c5cd4c895ddd034cc870cc989eaba2f3c0124df1'
 
 " vimgrepのため
 nnoremap [q :cprevious<CR>   " 前へ
@@ -28,37 +26,30 @@ nnoremap ]Q :<C-u>clast<CR>  " 最後へ
 " swapファイル~ファイルを作らない
 :set noswapfile
 :set nobackup
-" thema change to molokai
-syntax on
 colorscheme molokai
-set t_co=256
+syntax on
+
 if has('vim_starting')
-	  if &compatible     
-		  set nocompatible               " Be iMproved  
-	  endif
 	"初回起動時のみruntimepathにneobundleのパスを指定する
-	set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
+	set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 " NeoBundleを初期化
 call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-"NeoBundle 'Shougo/vimproc', {
-"	\ 'build' : {
-"		\'windows' : 'make -f make_mingw32.mak',
-"		\'mac' : 'make -f make_mac.mak',
-"		\},
-"	\}	
+
 " インストールするプラグインをここに記述
-NeoBundle 'https://github.com/Shougo/unite.vim.git'
+NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'ujihisa/neco-look'
 NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'pocke/neco-gh-issues'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/calendar-vim'
+NeoBundle 'mattn/vim-metarw-redmine'
+NeoBundle 'kana/vim-metarw'
 call neobundle#end()
 
 " Disable AutoComplPop.
@@ -158,7 +149,6 @@ autocmd VimEnter * VimFilerExplorer
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-" 独自スニペット適用
 let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/'
 
 " SuperTab like snippets behavior.
