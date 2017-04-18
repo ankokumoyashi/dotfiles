@@ -10,10 +10,6 @@ set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=2		" more powerful backspacing
 
 let g:vimfiler_safe_mode_by_default=0
-" Don't write backup file if vim is being called by "crontab -e"
-au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
-" Don't write backup file if vim is being called by "chpass"
-au BufWrite /private/etc/pw.* set nowritebackup nobackup
 
 let g:metarw_redmine_server = 'http://localhost:10080'
 let g:metarw_redmine_apikey = 'c5cd4c895ddd034cc870cc989eaba2f3c0124df1'
@@ -26,13 +22,13 @@ nnoremap ]Q :<C-u>clast<CR>  " 最後へ
 " swapファイル~ファイルを作らない
 :set noswapfile
 :set nobackup
-colorscheme molokai
 syntax on
 
 if has('vim_starting')
 	"初回起動時のみruntimepathにneobundleのパスを指定する
 	set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
+set runtimepath+=~/vimfiles/
 
 " NeoBundleを初期化
 call neobundle#begin(expand('~/.vim/bundle/'))
@@ -91,32 +87,12 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
-" autocmd FileType python setlocal omnifunc=jedi#completions
-" 
-" let g:jedi#auto_vim_configuration = 0
-" 
-" if !exists('g:neocomplete#force_omni_input_patterns')
-" 	        let g:neocomplete#force_omni_input_patterns = {}
-" 	endif
-" 
-" 	let g:neocomplete#force_omni_input_patterns.python = ''
 " pythonomnimukouka
 " Disable omnifunc in Python
 if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -129,13 +105,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplete#sources#omni#input_patterns')
 	let g:neocomplete#sources#omni#input_patterns = {}
 endif
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:]asfa *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-" for snippets
-" ファイルタイプ別のプラグイン/インデントを有効にする
+
 filetype plugin indent on
 
 " mapping
@@ -163,3 +133,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
 	set conceallevel=2 concealcursor=niv
 endif
+source ~/Documents/GitHub/weblio_vim/weblio.vim
+" for debug
+" 
