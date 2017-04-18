@@ -3,6 +3,7 @@ set modelines=-4		" CVE-2007-2438
 set expandtab
 set tabstop=4
 set shiftwidth =4
+set nobackup
 
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
@@ -134,5 +135,3 @@ if has('conceal')
 	set conceallevel=2 concealcursor=niv
 endif
 source ~/Documents/GitHub/weblio_vim/weblio.vim
-" for debug
-" 
