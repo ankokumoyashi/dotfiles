@@ -90,6 +90,7 @@ set! ui.caretWidth=2
 :qmark h http://b.hatena.ne.jp/
 :qmark m https://mail.google.com/mail/u/0/#inbox
 :qmark p http://getpocket.com/a/queue
+:qmark T https://ankokumoyashi.github.io/TIL-Sphinx/
 
 "=======================================================
 
