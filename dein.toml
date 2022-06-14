@@ -13,4 +13,3 @@ repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'morhetz/gruvbox'
-
