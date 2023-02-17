@@ -7,6 +7,7 @@ cd neovim
 git checkout v0.6.1
 make CMAKE_BUILD_TYPE=Release
 sudo make install
+cd ../
 mkdir ~/.config
 mkdir ~/.config/nvim
 cp ./init.vim ~/.config/nvim
