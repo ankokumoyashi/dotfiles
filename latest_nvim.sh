@@ -4,7 +4,7 @@ sudo yum -y install ninja-build libtool autoconf automake cmake gcc gcc-c++ make
 pip3 install cmake --upgrade
 git clone https://github.com/neovim/neovim.git
 cd neovim
-git checkout v0.6.1
+git checkout v0.8.3
 make CMAKE_BUILD_TYPE=Release
 sudo make install
 cd ../

@@ -1,6 +1,7 @@
 # builds
-sudo apt-get install ninja-build libtool autoconf automake pkg-config unzip patch gettext
-sudo apt-get install build-essential
+sudo apt update -y
+sudo apt install -y make cmake ninja-build libtool libtool-bin autoconf automake pkg-config unzip patch gettext
+sudo apt install -y build-essential
 # python3.10
 pip3 install cmake --upgrade
 git clone https://github.com/neovim/neovim.git
