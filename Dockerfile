@@ -16,9 +16,9 @@ ENV LC_ALL ja_JP.UTF-8
 RUN unlink /etc/localtime
 RUN ln -s /usr/share/zoneinfo/Japan /etc/localtime
 
-# ===============================================================================================================
+# =============
 # BASE packages
-# ===============================================================================================================
+# =============
 RUN yum --enablerepo=extras clean metadata
 RUN yum install -y zlib zlib-devel make gcc gcc-c++ openssl openssl-devel readline-devel pcre pcre-devel
 RUN yum install -y openssh openssh-server
@@ -26,19 +26,27 @@ RUN yum install -y net-tools wget sudo
 RUN yum install -y tar zip unzip bzip2 which tree
 RUN yum install -y git
 
-# ===============================================================================================================
+# ===============================
 # install pyenv + python + neovim
-# ===============================================================================================================
+# ===============================
+WORKDIR /tmp
 RUN git clone https://github.com/ankokumoyashi/dotfiles.git
-WORK /root/dotfiles
+WORKDIR /tmp/dotfiles
 # install pyenv + openssl(required python3.10) + python
-RUN bash -x install_pyenv.sh && bash -x install_openssl.sh && pyenv install 3.11.2 && pyenv global 3.11.2
-# install nvim
-RUN bash -x latest-nvim.sh
+RUN bash -x install_pyenv.sh 
+ENV HOME="/root/" \
+    PYENV_ROOT="${HOME}/.pyenv" \
+    PATH="${PYENV_ROOT}/bin:$PATH"
+RUN eval "$(pyenv init --path)"
+RUN bash -x install_openssl.sh
+RUN source /etc/bashrc && pyenv install 3.11.2 && pyenv global 3.11.2
+# # install nvim
+RUN bash -x latest_nvim.sh
 
-# ===============================================================================================================
+# ===========================
 # install docker-cli for dood
-# ===============================================================================================================
+# ===========================
 RUN yum install -y yum-utils
 RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 RUN yum install -y docker-ce-cli
+WORKDIR /work/

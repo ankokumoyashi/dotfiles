@@ -3,4 +3,3 @@ git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> /etc/bashrc
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> /etc/bashrc
 echo 'eval "$(pyenv init --path)"' >> /etc/bashrc
-source /etc/bashrc

@@ -5,10 +5,6 @@ map <silent> sv :vsplit<CR>
 map <silent> sp :sp<CR>
 " ターミナルでのescape用
 tnoremap <silent> <ESC> <C-\><C-n>
-" dein settings {{{
-if &compatible
-  set nocompatible
-endif
 " dein.vimのディレクトリ
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'

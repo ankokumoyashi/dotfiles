@@ -1,0 +1,1 @@
+# wsl2はsystemd=trueになっていればsystemctlが使える
