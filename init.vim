@@ -43,10 +43,40 @@ if dein#check_install()
 endif
 " }}}
 
-" NERDTREE用
+" VimFiler
 map <C-n> :VimFilerExplorer<CR>
-:let g:vimfiler_as_default_explorer = 1
+map <C-b> :Unite bookmark<CR>
+map <C-j> :Unite file_mru buffer<CR>
+autocmd TermOpen * setlocal norelativenumber
+autocmd TermOpen * setlocal nonumber
+autocmd FileType vimfiler call unite#custom_default_action('directory', 'cd')
+let g:vimfiler_as_default_explorer = 1
+let g:unite_enable_start_insert=1
 syntax enable
+
+" memolist.vim
+let g:memolist_unite        = 1
+let g:memolist_unite_source = "file_rec"
+let g:memolist_unite_option = "-start-insert"
+let mapleader = "\<Space>"
+nnoremap <Leader>mn  :MemoNew<CR>
+nnoremap <Leader>ml  :MemoList<CR>
+nnoremap <Leader>mg  :MemoGrep<CR>
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>k <C-w>k
+nnoremap <Leader>l <C-w>l
+
+
+" markdown_
+augroup update_markdown_syntax
+  autocmd!
+  autocmd BufNew,BufEnter * if &filetype == 'markdown' | syntax match markdownError '\w\@<=\w\@=' | endif
+augroup END
+
+" csvtomarkdownの設定
+let g:table_converter_root_path = '/root/.config/nvim/table-converter'
+source /root/.config/nvim/table-converter/vim/commands.vim
 
 set number             "行番号を表示
 set tabstop=4          "タブを何文字の空白に変換するか
@@ -57,6 +87,9 @@ set clipboard=unnamed  "yank した文字列をクリップボードにコピー
 set hls                "検索した文字をハイライトする
 set smarttab
 set mouse=             "コピペのためにmouse無効化
+set norelativenumber
+set nocursorline
+set noswapfile
 
 " === gruvbox ===
 colorscheme gruvbox

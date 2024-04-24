@@ -22,3 +22,6 @@ depends = 'neomru.vim'
 
 [[plugins]]
 repo = 'Shougo/vimfiler.vim'
+
+[[plugins]]
+repo = 'glidenote/memolist.vim'
